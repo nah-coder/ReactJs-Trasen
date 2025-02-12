@@ -1,10 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link để điều hướng
 
 function Header() {
   return (
     <div>
       <nav className="nav d-flex" style={{ padding: "2% 0" }}>
-        {/* <div class="d-flex"> */}
         <div className="logo">
           <img
             src="../images/logophongtra.png"
@@ -19,29 +19,19 @@ function Header() {
           >
             <ul className="menu-1 d-flex " style={{ margin: "2% 0" }}>
               <li className="item">
-                <a href="../view/tc.html" className="link">
-                  Trang chủ
-                </a>
+                <Link to="/" className="link">Trang chủ</Link>
               </li>
               <li className="item">
-                <a href="../view/gioithieu.html" className="link">
-                  Giới thiệu
-                </a>
+                <Link to="/GioiThieu" className="link">Giới thiệu</Link>
               </li>
               <li className="item">
-                <a href="../view/sanpham.html" className="link">
-                  Sản phẩm
-                </a>
+                <Link to="/SanPham" className="link">Sản phẩm</Link>
               </li>
               <li className="item">
-                <a href="../view/tintuc.html" className="link">
-                  Tin tức
-                </a>
+                <Link to="/TinTuc" className="link">Tin tức</Link>
               </li>
               <li className="item">
-                <a href="../view/lienhe.html" className="link">
-                  Liên hệ
-                </a>
+                <Link to="/LienHe" className="link">Liên hệ</Link>
               </li>
             </ul>
           </div>

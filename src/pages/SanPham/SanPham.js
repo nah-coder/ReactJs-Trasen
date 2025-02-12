@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom"; // Import Link để điều hướng
 function SanPham() {
   return (
     <>
@@ -219,14 +219,14 @@ function SanPham() {
                           </div>
                         </div>
                         <div className="product-image">
-                          <a href="../view/chitietsp.html">
+                          <Link to="/ChiTietSP">
                             <img
                               className="images"
                               src="../images/product-1.png"
                               alt="images "
                               style={{ width: "71%" }}
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="product-sale ">
                           <p style={{ fontSize: "75%" }}>NEW</p>
