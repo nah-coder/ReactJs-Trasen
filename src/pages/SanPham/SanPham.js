@@ -176,12 +176,13 @@ function SanPham() {
                         </div>
                         <div className="product-image">
                           <Link to="/ChiTietSP">
-                            <img
+                            {/* <img
                               className="images"
                               src="../images/product-1.png"
                               alt="images "
                               style={{ width: "71%" }}
-                            />
+                            /> */}
+                            <img className="images" src={item.Image} alt="images " style={{ width: "71%" }} />
                           </Link>
                         </div>
                         <div className="product-sale ">
@@ -193,8 +194,8 @@ function SanPham() {
                         {item.Name}
                         </h4>
                         <div className="giá text-center d-flex">
-                          <span>{item.Price}</span>
-                          <span>{item.Weight}</span>
+                          <span>{item.Price} VND</span>
+                          <span>{item.Weight} g</span>
                         </div>
                       </div>
                     </div>
