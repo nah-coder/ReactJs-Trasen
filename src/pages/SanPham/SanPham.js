@@ -1,6 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link để điều hướng
+import Star from "../../components/Layout/component/Star/Star";
+import { useState, useEffect } from "react";
+import request from '../../api/Request'
 function SanPham() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getNews = async () => {
+      try {
+        const res = await request.get("Product");
+        setData(res.data);
+      } catch (error) {
+      }
+    };
+    getNews();
+  }, []);
   return (
     <>
       <section>
@@ -154,69 +168,11 @@ function SanPham() {
                 </div>
                 <div className="view5-botright">
                   <div className="listProduct d-flex">
-                    <div className="product-item position-rel ">
+                    {data.map((item)=>(
+                      <div className="product-item position-rel ">
                       <div className="top-product position-rel">
                         <div className="sao d-flex">
-                          <div>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width={16}
-                              height={16}
-                              fill="currentColor"
-                              className="bi bi-star-fill"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width={16}
-                              height={16}
-                              fill="currentColor"
-                              className="bi bi-star-fill"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width={16}
-                              height={16}
-                              fill="currentColor"
-                              className="bi bi-star-fill"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width={16}
-                              height={16}
-                              fill="currentColor"
-                              className="bi bi-star-fill"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width={16}
-                              height={16}
-                              fill="currentColor"
-                              className="bi bi-star-fill"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </div>
+                          <Star />
                         </div>
                         <div className="product-image">
                           <Link to="/ChiTietSP">
@@ -229,20 +185,22 @@ function SanPham() {
                           </Link>
                         </div>
                         <div className="product-sale ">
-                          <p style={{ fontSize: "75%" }}>NEW</p>
+                          <p style={{ fontSize: "75%" }}>{item.Sale}</p>
                         </div>
                       </div>
                       <div className="mid-product ">
                         <h4 className="product-cate text-center">
-                          Trà Shan Tuyết
+                        {item.Name}
                         </h4>
                         <div className="giá text-center d-flex">
-                          <span>50.000 VNĐ</span>
-                          <span>200g</span>
+                          <span>{item.Price}</span>
+                          <span>{item.Weight}</span>
                         </div>
                       </div>
                     </div>
-                    <div className="product-item position-rel ">
+                    ))}
+                    
+                    {/* <div className="product-item position-rel ">
                       <div className="top-product position-rel">
                         <div className="sao d-flex">
                           <div>
@@ -929,7 +887,7 @@ function SanPham() {
                           <span>200g</span>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
