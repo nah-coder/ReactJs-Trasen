@@ -1,6 +1,18 @@
 import React from 'react'
-
+import { useState, useEffect } from 'react';
+import request from '../../api/Request';
 function Trangchu() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getNews = async () => {
+      try {
+        const res = await request.get("NgheNhan");
+        setData(res.data);
+      } catch (error) {
+      }
+    };
+    getNews();
+  }, []);
   return (
     <>
       <section>
@@ -319,114 +331,28 @@ function Trangchu() {
             className="view7-bot absolute d-flex "
             style={{ margin: "4% 12%" }}
           >
-            <div className="product-item ">
+            {data.map((item)=>(
+              <div className="product-item ">
               <div className="top-product">
                 <div className="product-image">
                   <img
                     className="images"
-                    src="../images/professional-tea-1.png"
+                    src={item.Image}
                     alt="images "
                     style={{ width: "71%" }}
                   />
                 </div>
                 <div className="mid-product ">
-                  <span>Nn. Nguyễn Cao Sơn</span>
+                  <span>{item.Name}</span>
                 </div>
                 <div className="view7-content">
                   <span style={{ fontSize: "53%!important" }}>
-                    Nguyễn Cao Sơn được chọn làm đại diện quảng bá văn hóa Trà
-                    Việt tại ngôi nhà ai văn 87 Mã Mây, Hà Nội
+                    {item.Description}
                   </span>
                 </div>
               </div>
             </div>
-            <div className="product-item ">
-              <div className="top-product">
-                <div className="product-image">
-                  <img
-                    className="images"
-                    src="../images/professional-tea-2.png"
-                    alt="images "
-                    style={{ width: "71%" }}
-                  />
-                </div>
-                <div className="mid-product ">
-                  <span>Nn. Hướng Anh Sướng</span>
-                </div>
-                <div className="view7-content">
-                  <span style={{ fontSize: "53%!important" }}>
-                    Truyền nhân đối thứ 6 của dòng trà Trường Xuân, Hà Nội chia
-                    sẻ về nghệ thuật trà đạo, lĩnh vực mà anh dành hen nửa cuộc
-                    đời nghiên cứu một sách đam mê.
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="product-item ">
-              <div className="top-product">
-                <div className="product-image">
-                  <img
-                    className="images"
-                    src="../images/professional-tea-3.png"
-                    alt="images "
-                    style={{ width: "71%" }}
-                  />
-                </div>
-                <div className="mid-product ">
-                  <span>Nn. Nguyễn Thị Dần</span>
-                </div>
-                <div className="view7-content">
-                  <span style={{ fontSize: "53%!important" }}>
-                    Vän ty tay chon hoa, tich gan, thuc hiện từng Công đoạn ướp
-                    trà sen. Canx chính bởi nghiên trả, bởi yêu nghề nên cô
-                    thiếu nữ Hà thành năm sau vẫn say hưởng vị trà sen Tây Hồ
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="product-item ">
-              <div className="top-product">
-                <div className="product-image">
-                  <img
-                    className="images"
-                    src="../images/professional-tea-4.png"
-                    alt="images "
-                    style={{ width: "71%" }}
-                  />
-                </div>
-                <div className="mid-product ">
-                  <span>Nn. Nguyễn Hoài Linh</span>
-                </div>
-                <div className="view7-content">
-                  <span style={{ fontSize: "53%!important" }}>
-                    Vô địch toàn thế giới trong cuộc thi Tea Master Cup
-                    International 2018 ve pha trà được tổ chức tại Huế
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="product-item ">
-              <div className="top-product">
-                <div className="product-image">
-                  <img
-                    className="images"
-                    src="../images/professional-tea-5.png"
-                    alt="images "
-                    style={{ width: "71%" }}
-                  />
-                </div>
-                <div className="mid-product ">
-                  <span>Nn. Viên Trân</span>
-                </div>
-                <div className="view7-content">
-                  <span style={{ fontSize: "53%!important" }}>
-                    Sinh ra và lớn lên trong một gia đình quý tộc phong kiến,
-                    trong một môi trường mà việc uống trà và trà Cự ngon, cực
-                    thượng hạng là điều không bao giờ thiếu trong nhà.
-                  </span>
-                </div>
-              </div>
-            </div>
+          ))}
           </div>
           <div className="view7-sectionbottom absolute">
             <div>
